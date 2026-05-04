@@ -70,3 +70,19 @@ void bacaFile(){
     }
     fclose(file);
 }
+
+//cek bentrok
+bool cekBentrok(string tanggal, string jam) {
+    bacaFile();
+    for(int i=0; i<n; i++){
+        if(data[i].tanggal == tanggal && data[i].jam == jam){
+            return true;
+        }
+    }
+    return false;
+}
+//tambah
+void tambahBooking(){
+    cout << "\n===TAMBAH BOOKING===\n";
+    cin.ignore(1000, '\n');
+}
