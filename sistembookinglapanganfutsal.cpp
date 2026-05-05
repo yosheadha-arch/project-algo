@@ -231,3 +231,28 @@ void updateBooking() {
     }
 }
 
+// main
+int main() {
+    int menu;
+    do {
+        cout << "\n=== BOOKING FUTSAL ===\n";
+        cout << "1. Tambah Booking\n";
+        cout << "2. Tampilkan Data\n";
+        cout << "3. Cari Booking\n";
+        cout << "4. Update Booking\n";
+        cout << "5. Keluar\n";
+        cout << "Pilih: ";
+        cin >> menu;
+
+        switch(menu) {
+            case 1: tambahBooking(); break;
+            case 2: tampilBooking(); break;
+            case 3: cariBooking(); break;
+            case 4: updateBooking(); break;
+            case 5: cout << "Program selesai.\n"; break;
+            default: cout << "Pilihan tidak valid!\n";
+        }
+    } while(menu != 5);
+
+    return 0;
+}
