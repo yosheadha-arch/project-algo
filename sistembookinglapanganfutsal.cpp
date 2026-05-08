@@ -85,4 +85,34 @@ bool cekBentrok(string tanggal, string jam) {
 void tambahBooking(){
     cout << "\n===TAMBAH BOOKING===\n";
     cin.ignore(1000, '\n');
+
+    cout << "nama tim : ";
+    getline(cin, data[n].jam);
+
+    cout << "tanggal (YYY-MM-DD): ";
+    getline(cin, data[n].tanggal);
+
+    cout << "jam (contoh 19.00): ";
+    getline(cin, data[n].jam);
+
+    cout << "durasi (jam): "
+    cin >> data[n].durasi;
+
+    //validasi data
+    if(data[n].durasi <= 0) {
+        cout << "durasi tidak valid!\n";
+        return;
+    }
+    //cek bentrok
+    if(cekBentrok(data[n].tanggal, data[n].jam)){
+        cout << "jadwal sudah dibooking!\n";
+        return;
+    }
+
+    n++;
+    data[n].harga = data[n].durasi * 100000;
+    n++
+    simpanFile();
+
+    cout << "booking berhaasil ditambahkan!\n";
 }
