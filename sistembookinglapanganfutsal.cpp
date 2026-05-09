@@ -16,14 +16,14 @@ int n = 0;
 
 //nyimpen file
 void simpanFile() {
-    FILE *file = fopen("booking.txt");
+    FILE *file = fopen("booking.txt", "w");
 
-    if(file = NULL) {
+    if(file == NULL) {
         cout<<"File tidak bisa dibuka\n";
         return;
     }
-    for(int i=0; 1<n; i++){
-        fprintf(file, "%s\n%s\n%d %d\n",
+    for(int i=0; i<n; i++){
+        fprintf(file, "%s\n%s\n%s\n%d\n%d\n",
                 data[i].namaTim.c_str(),
                 data[i].tanggal.c_str(),
                 data[i].jam.c_str(),
@@ -45,7 +45,7 @@ void hapusNewline(char *str) {
 
 //membaca filenya
 void bacaFile(){
-    File *file = fopen("booking.txt", "r");
+    FILE *file = fopen("booking.txt", "r");
 
     if(file == NULL){
         n = 0;
@@ -64,7 +64,7 @@ void bacaFile(){
         fgets(buffer, sizeof(buffer), file);
         data[n].jam = buffer;
 
-        fscan(file, "%d %d\n", &data[n].durasi, &data[n].harga);
+        fscanf(file, "%d %d\n", &data[n].durasi, &data[n].harga);
 
         n++;
     }
@@ -93,8 +93,10 @@ void tambahBooking(){
     getline(cin, data[n].tanggal);
 
     cout << "Jam (contoh 19:00): ";
+    getline(cin,data[n].jam);
+
     cout << "Durasi (jam): ";
-    cin >> data[n].durasi:
+    cin >> data[n].durasi;
 
     // validasi
     if (data[n].durasi <= 0){
@@ -120,16 +122,16 @@ void sortingAsc() {
     for (int i = 0; i < n-1; i++) {
         for (int j = 0; j< n-i-1; j++) {
             if (data[j].tanggal < data[j+1].tanggal) {
-                swap(data[j], data[j=1]);
+                swap(data[j], data[j+1]);
             }
         }
     }
 }
 
 void sortingDesc() {
-    for (int i = 0; i < n-1; i){
+    for (int i = 0; i < n-1; i++){
         for (int j = 0; j < n-i-1; j++) {
-            if (data[j].tanggal , data[j+1].tanggal) {
+            if (data[j].tanggal > data[j+1].tanggal) {
                 swap (data[j], data[j+1]);
             }
         }
@@ -152,7 +154,7 @@ void tampilBooking() {
     if (pilih == 1)
         sortingAsc();
     else
-        sortinngDsc();
+        sortingDesc();
 
     cout << "\n======================================\n";
     cout << left << setw(15) << "Tim"
@@ -163,10 +165,10 @@ void tampilBooking() {
     cout << "\n======================================\n";
 
     for (int i = 0; i < n; i++) {
-        cout << setw(15) << data[i].namaTim
-        cout << setw(15) << data[i].tanggal
-        cout << setw(10) << data[i].jam
-        cout << setw(10) << data[i].durasi
+        cout << setw(15) << data[i].namaTim;
+        cout << setw(15) << data[i].tanggal;
+        cout << setw(10) << data[i].jam;
+        cout << setw(10) << data[i].durasi;
         cout << setw(10) << data[i].harga << endl;
     }
 }
@@ -204,7 +206,7 @@ void cariBooking() {
 // update
 void updateBooking() {
     string cari;
-    cin.ignore(1000, '\n')
+    cin.ignore(1000, '\n');
 
     cout << "\nMasukan nama tim: ";
     getline(cin, cari);
