@@ -2,7 +2,7 @@
 #include <iomanip>
 using namespace std;
 
-//struct
+// Struct
 struct Booking {
     string namaTim;
     string tanggal;
@@ -14,7 +14,7 @@ struct Booking {
 Booking data[100];
 int n = 0;
 
-//nyimpen file
+// Menyimpan File
 void simpanFile() {
     FILE *file = fopen("booking.txt", "w");
 
@@ -33,7 +33,7 @@ void simpanFile() {
     fclose(file);
 }
 
-//menghapus newline
+// Menghapus Newline
 void hapusNewline(char *str) {
     for(int i=0; str[i] != '\0'; i++){
         if(str[i] == '\n') {
@@ -43,7 +43,7 @@ void hapusNewline(char *str) {
     }
 }
 
-//membaca filenya
+// Membaca Filenya
 void bacaFile(){
     FILE *file = fopen("booking.txt", "r");
 
@@ -71,7 +71,7 @@ void bacaFile(){
     fclose(file);
 }
 
-//cek bentrok
+// Cek Bentrok
 bool cekBentrok(string tanggal, string jam) {
     bacaFile();
     for(int i=0; i<n; i++){
@@ -81,7 +81,7 @@ bool cekBentrok(string tanggal, string jam) {
     }
     return false;
 }
-//tambah
+// Tambah
 void tambahBooking(){
     cout << "\n===TAMBAH BOOKING===\n";
     cin.ignore(1000, '\n');
@@ -117,7 +117,7 @@ void tambahBooking(){
     cout << "Booking berhasil ditambahkan!\n";
 }
 
-// sorting
+// Sorting
 void sortingAsc() {
     for (int i = 0; i < n-1; i++) {
         for (int j = 0; j< n-i-1; j++) {
@@ -138,7 +138,7 @@ void sortingDesc() {
     }
 }
 
-// tampil
+// Tampil
 void tampilBooking() {
     int pilih;
 
@@ -173,7 +173,7 @@ void tampilBooking() {
     }
 }
 
-// search 
+// Search 
 void cariBooking() {
     string cari;
     cin.ignore(1000, '\n');
@@ -203,7 +203,7 @@ void cariBooking() {
     }
 }
 
-// update
+// Update
 void updateBooking() {
     string cari;
     cin.ignore(1000, '\n');
@@ -233,7 +233,7 @@ void updateBooking() {
     }
 }
 
-// main
+// Main
 int main() {
     int menu;
     do {
