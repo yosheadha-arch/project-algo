@@ -11,4 +11,13 @@ struct Booking {
     string jam;
     int durasi;
     int harga;
-}
+};
+
+//====linked list=======
+struct Node {
+    Booking data;
+    Node *next;
+};
+
+Node *head = NULL;
+
