@@ -147,3 +147,4 @@ void bacaFile(){
     fclose(file);
 }
 
+//=====cek bentrok=====
