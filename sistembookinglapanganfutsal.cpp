@@ -241,3 +241,31 @@ int jumlahData(){
         bantu = bantu->next;
     }
 }
+
+//====sorting=====
+
+void sortingAsc(Booking arr[], int n){
+    for(int i=0;i<n-1;i++){
+
+        for(int j=0;j<n-i-1;j++){
+
+            if(arr[j].tanggal > arr[j+1].tanggal){
+
+                swap(arr[j], arr[j+1]);
+            }
+        }
+    }
+}
+
+void sortingDesc(Booking arr[], int n) {
+    for(int i=0;i<n-1;i++){
+
+        for(int j=0;j<n-i-1;j++){
+
+            if(arr[j].tanggal < arr[j+1].tanggal){
+
+                swap(arr[j], arr[j+1]);
+            }
+        }
+    }
+}
