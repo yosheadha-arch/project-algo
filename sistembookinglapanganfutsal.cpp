@@ -96,4 +96,54 @@ void simpanFile(){
     fclose(file);
 }
 
-//======
+//======baca file=====
+
+void bacaFile(){
+    kosongkanList();
+
+    FILE *file = fopen("booking.txt", "r");
+
+    if(file == NULL) {
+        return;
+    }
+    char buffer[200];
+
+    while(fgets(buffer, sizeof(buffer), file) != NULL){
+
+        Node *baru = new Node;
+
+        hapusNewline(buffer);
+        baru->data.namaTim = buffer;
+
+        fgets(buffer, sizeof(buffer), file);
+        hapusNewline(buffer);
+        baru->data.tanggal = buffer;
+
+        fgets(buffer, sizeof(buffer), file);
+        hapusNewline(buffer);
+        baru->data.jam = buffer;
+
+        fscanf(file,"%d %d\n",
+               &baru->data.durasi,
+               &baru->data.harga);
+
+        baru->next = NULL;
+
+        if(head == NULL){
+
+            head = baru;
+
+        } else {
+
+            Node *bantu = head;
+
+            while(bantu->next != NULL){
+                bantu = bantu->next;
+            }
+
+            bantu->next = baru;
+        }
+    }
+    fclose(file);
+}
+
