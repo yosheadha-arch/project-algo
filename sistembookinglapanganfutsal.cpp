@@ -148,3 +148,19 @@ void bacaFile(){
 }
 
 //=====cek bentrok=====
+bool cekBentrok(string tanggal, string jam){
+    Node *bantu = head;
+
+    while(bantu !=NULL) {
+        while(bantu != NULL){
+
+        if(bantu->data.tanggal == tanggal &&
+           bantu->data.jam == jam){
+
+            return true;
+        }
+
+        bantu = bantu->next;
+    }
+    return false;
+}
