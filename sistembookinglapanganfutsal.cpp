@@ -389,3 +389,55 @@ void cariBooking(){
     }
 }
 
+//======update=====
+
+void updateBooking(){
+    bacaFile();
+    cin.ignore(1000, '\n');
+
+    string cari;
+
+    cout << "\nMasukkan nama tim: ";
+    getline(cin, cari);
+
+    Node *bantu = head;
+
+    bool ketemu = false;
+
+    while(bantu != NULL){
+
+        if(bantu->data.namaTim == cari){
+
+            do {
+
+                bantu->data.durasi =
+                    inputAngka("Durasi baru: ");
+
+                if(bantu->data.durasi <= 0){
+
+                    cout << "Durasi tidak valid!\n";
+                }
+
+            } while(bantu->data.durasi <= 0);
+
+            bantu->data.harga =
+                bantu->data.durasi * 100000;
+
+            ketemu = true;
+            break;
+        }
+
+        bantu = bantu->next;
+    }
+
+    if(ketemu){
+
+        simpanFile();
+
+        cout << "Data berhasil diupdate!\n";
+
+    } else {
+
+        cout << "Data tidak ditemukan.\n";
+    }
+}
