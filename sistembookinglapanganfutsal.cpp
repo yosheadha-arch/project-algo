@@ -70,4 +70,30 @@ void kosongkanList(){
     }
 }
 
-//====
+//====simpan file====
+void simpanFile(){
+    FILE *file = fopen("booking.txt", "w");
+
+    if(file == NULL){
+        cout << "file tidak bisa dibuka\n"
+        return;
+    }
+
+    Node *bantu = head;
+
+    while(bantu != NULL) {
+
+        fprintf(file,
+            "%s\n%s\n%s\n%d %d\n"
+            bantu->data.namaTim.c_str(),
+                bantu->data.tanggal.c_str(),
+                bantu->data.jam.c_str(),
+                bantu->data.durasi,
+                bantu->data.harga);
+
+            bantu = bantu->next;
+    }
+    fclose(file);
+}
+
+//======
