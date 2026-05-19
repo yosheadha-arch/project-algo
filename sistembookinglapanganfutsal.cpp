@@ -229,3 +229,15 @@ void tambahBooking(){
 
     cout << "Booking berhasil ditambahkan!\n";
 }
+
+//======HITUNG NODE=======
+int jumlahData(){
+    int jumlah = 0;
+    Node *bantu = head;
+
+    while(bantu != NULL){
+
+        jumlah++;
+        bantu = bantu->next;
+    }
+}
