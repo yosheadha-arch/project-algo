@@ -269,3 +269,74 @@ void sortingDesc(Booking arr[], int n) {
         }
     }
 }
+
+//====tampil data====
+
+void tampilBooking(){
+    bacaFile();
+
+    if(head == NULL){
+
+        cout << "Data kosong.\n";
+        return;
+}
+
+int pilih;
+do {
+    cout << "\n1. Ascending\n";
+        cout << "2. Descending\n";
+
+        pilih = inputAngka("Pilih: ");
+
+        if(pilih != 1 && pilih != 2){
+
+            cout << "Pilihan tidak valid!\n";
+}
+
+} while(pilih != 1 && pilih != 2);
+int n = jumlahData();
+
+    Booking arr[100];
+
+    Node *bantu = head;
+
+    int i = 0;
+
+    while(bantu != NULL){
+
+        arr[i] = bantu->data;
+
+        bantu = bantu->next;
+        i++;
+    }
+
+    if(pilih == 1){
+
+        sortingAsc(arr, n);
+
+    } else {
+
+        sortingDesc(arr, n);
+    }
+
+    cout << "\n===========================================================\n";
+
+    cout << left
+         << setw(15) << "Tim"
+         << setw(15) << "Tanggal"
+         << setw(10) << "Jam"
+         << setw(10) << "Durasi"
+         << setw(10) << "Harga" << endl;
+
+    cout << "===========================================================\n";
+
+    for(int i=0;i<n;i++){
+
+        cout << setw(15) << arr[i].namaTim
+             << setw(15) << arr[i].tanggal
+             << setw(10) << arr[i].jam
+             << setw(10) << arr[i].durasi
+             << setw(10) << arr[i].harga << endl;
+    }
+}
+
