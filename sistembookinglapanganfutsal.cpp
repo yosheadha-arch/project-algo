@@ -492,3 +492,62 @@ void hapusBooking(){
 
     cout << "Data berhasil dihapus!\n";
 }
+
+//==========main===========
+
+int main(){
+    int menu;
+
+    do{
+        cout << "\n=================================================\n";
+    cout << "|           SISTEM BOOKING FUTSAL               |\n";
+    cout << "=================================================\n";
+    cout << "| No | Menu                                     |\n";
+    cout << "=================================================\n";
+    cout << "| 1  | Tambah Booking                           |\n";
+    cout << "| 2  | Tampilkan Booking                        |\n";
+    cout << "| 3  | Cari Booking                             |\n";
+    cout << "| 4  | Update Booking                           |\n";
+    cout << "| 5  | Hapus Booking                            |\n";
+    cout << "| 6  | Keluar                                   |\n";
+    cout << "=================================================\n";
+
+    menu = inputAngka("Pilih Menu : ");
+
+    switch(menu){
+
+        case 1:
+            tambahBooking();
+            break;
+
+        case 2:
+            tampilBooking();
+            break;
+
+        case 3:
+            cariBooking();
+            break;
+
+        case 4:
+            updateBooking();
+            break;
+
+        case 5:
+            hapusBooking();
+            break;
+
+        case 6:
+            cout << "Program selesai.\n";
+            break;
+
+        default:
+            cout << "Menu tidak valid!\n";
+    }
+
+} while(menu != 6);
+
+    return 0;
+}
+    }
+    
+} 
