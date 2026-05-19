@@ -441,3 +441,54 @@ void updateBooking(){
         cout << "Data tidak ditemukan.\n";
     }
 }
+
+//hapus 
+
+void hapusBooking(){
+    bacaFile();
+
+    cin.ignore(1000, '\n');
+
+    string cari;
+
+    cout << "\nMasukkan nama tim: ";
+    getline(cin, cari);
+
+    Node *hapus = head;
+    Node *sebelum = NULL;
+
+    bool ketemu = false;
+
+    while(hapus != NULL){
+
+        if(hapus->data.namaTim == cari){
+
+            ketemu = true;
+            break;
+        }
+
+        sebelum = hapus;
+        hapus = hapus->next;
+    }
+
+    if(!ketemu){
+
+        cout << "Data tidak ditemukan.\n";
+        return;
+    }
+
+    if(sebelum == NULL){
+
+        head = head->next;
+
+    } else {
+
+        sebelum->next = hapus->next;
+    }
+
+    delete hapus;
+
+    simpanFile();
+
+    cout << "Data berhasil dihapus!\n";
+}
