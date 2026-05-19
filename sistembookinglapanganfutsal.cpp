@@ -21,3 +21,24 @@ struct Node {
 
 Node *head = NULL;
 
+//=====validasi input======
+int inputAngka(string pesan) {
+    int angka;
+
+    while (true) {
+        cout << pesan;
+        cin >> angka;
+        
+        if (cin.fail()) {
+            
+            cin.clear();
+            cin.ignore(1000, '\n');
+
+            cout << "INput harus angka";
+
+        }else {
+
+            return angka;
+        }
+    }
+}
