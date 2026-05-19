@@ -58,4 +58,16 @@ void hapusNewline(char *str) {
 
 //===kosongkan list====
 
-void
+void kosongkanList(){
+    Node *hapus;
+
+    while(head != NULL) {
+
+        hapus = head;
+        head = head->next;
+
+        delete hapus;
+    }
+}
+
+//====
