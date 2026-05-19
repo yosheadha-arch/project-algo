@@ -164,3 +164,68 @@ bool cekBentrok(string tanggal, string jam){
     }
     return false;
 }
+
+//====tambah booking
+void tambahBooking(){
+    bacaFile();
+
+    cin.ignore(1000, '\n');
+
+    Node *baru = new Node;
+
+    cout << "\n========== TAMBAH BOOKING ==========\n";
+
+    cout << "Nama Tim             : ";
+    getline(cin, baru->data.namaTim);
+
+    cout << "Tanggal (YYYY-MM-DD) : ";
+    getline(cin, baru->data.tanggal);
+
+    cout << "Jam (contoh 19:00)   : ";
+    getline(cin, baru->data.jam);
+
+    do {
+
+        baru->data.durasi =
+            inputAngka("Durasi (jam)        : ");
+
+        if(baru->data.durasi <= 0){
+
+            cout << "Durasi tidak valid!\n";
+        }
+
+    } while(baru->data.durasi <= 0);
+
+    if(cekBentrok(baru->data.tanggal,
+                  baru->data.jam)){
+
+        cout << "Jadwal sudah dibooking!\n";
+
+        delete baru;
+        return;
+    }
+
+    baru->data.harga =
+        baru->data.durasi * 100000;
+
+    baru->next = NULL;
+
+    if(head == NULL){
+
+        head = baru;
+
+    } else {
+
+        Node *bantu = head;
+
+        while(bantu->next != NULL){
+            bantu = bantu->next;
+        }
+
+        bantu->next = baru;
+    }
+
+    simpanFile();
+
+    cout << "Booking berhasil ditambahkan!\n";
+}
