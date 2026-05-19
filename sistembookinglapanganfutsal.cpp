@@ -42,3 +42,20 @@ int inputAngka(string pesan) {
         }
     }
 }
+
+//===hapus timeline====
+
+void hapusNewline(char *str) {
+    for(int i=0; str[i] != '\0'; i++){
+
+        if(str[i] == '\n'){
+
+            str[i] = '\0';
+            break;
+        }
+    }
+}
+
+//===kosongkan list====
+
+void
