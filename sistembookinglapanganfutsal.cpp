@@ -1,9 +1,10 @@
 #include <iostream>
 #include <iomanip>
 #include <cstdio>
+
 using namespace std;
 
-//=======struct=========
+// ================= STRUCT =================
 
 struct Booking {
     string namaTim;
@@ -13,7 +14,8 @@ struct Booking {
     int harga;
 };
 
-//====linked list=======
+// ================= LINKED LIST =================
+
 struct Node {
     Booking data;
     Node *next;
@@ -21,31 +23,35 @@ struct Node {
 
 Node *head = NULL;
 
-//=====validasi input======
+// ================= VALIDASI INPUT =================
+
 int inputAngka(string pesan) {
+
     int angka;
 
     while (true) {
+
         cout << pesan;
         cin >> angka;
-        
+
         if (cin.fail()) {
-            
+
             cin.clear();
             cin.ignore(1000, '\n');
 
-            cout << "INput harus angka";
+            cout << "Input harus angka!\n";
 
-        }else {
+        } else {
 
             return angka;
         }
     }
 }
 
-//===hapus timeline====
+// ================= HAPUS NEWLINE =================
 
-void hapusNewline(char *str) {
+void hapusNewline(char *str){
+
     for(int i=0; str[i] != '\0'; i++){
 
         if(str[i] == '\n'){
@@ -56,12 +62,13 @@ void hapusNewline(char *str) {
     }
 }
 
-//===kosongkan list====
+// ================= KOSONGKAN LIST =================
 
 void kosongkanList(){
+
     Node *hapus;
 
-    while(head != NULL) {
+    while(head != NULL){
 
         hapus = head;
         head = head->next;
@@ -70,42 +77,49 @@ void kosongkanList(){
     }
 }
 
-//====simpan file====
+// ================= SIMPAN FILE =================
+
 void simpanFile(){
-    FILE *file = fopen("booking.txt", "w");
+
+    FILE *file = fopen("booking.txt","w");
 
     if(file == NULL){
-        cout << "file tidak bisa dibuka\n"
+
+        cout<<"File tidak bisa dibuka\n";
         return;
     }
 
     Node *bantu = head;
 
-    while(bantu != NULL) {
+    while(bantu != NULL){
 
         fprintf(file,
-            "%s\n%s\n%s\n%d %d\n"
-            bantu->data.namaTim.c_str(),
+                "%s\n%s\n%s\n%d %d\n",
+
+                bantu->data.namaTim.c_str(),
                 bantu->data.tanggal.c_str(),
                 bantu->data.jam.c_str(),
                 bantu->data.durasi,
                 bantu->data.harga);
 
-            bantu = bantu->next;
+        bantu = bantu->next;
     }
+
     fclose(file);
 }
 
-//======baca file=====
+// ================= BACA FILE =================
 
 void bacaFile(){
+
     kosongkanList();
 
-    FILE *file = fopen("booking.txt", "r");
+    FILE *file = fopen("booking.txt","r");
 
-    if(file == NULL) {
+    if(file == NULL){
         return;
     }
+
     char buffer[200];
 
     while(fgets(buffer, sizeof(buffer), file) != NULL){
@@ -144,15 +158,17 @@ void bacaFile(){
             bantu->next = baru;
         }
     }
+
     fclose(file);
 }
 
-//=====cek bentrok=====
+// ================= CEK BENTROK =================
+
 bool cekBentrok(string tanggal, string jam){
+
     Node *bantu = head;
 
-    while(bantu !=NULL) {
-        while(bantu != NULL){
+    while(bantu != NULL){
 
         if(bantu->data.tanggal == tanggal &&
            bantu->data.jam == jam){
@@ -162,11 +178,14 @@ bool cekBentrok(string tanggal, string jam){
 
         bantu = bantu->next;
     }
+
     return false;
 }
 
-//====tambah booking
+// ================= TAMBAH BOOKING =================
+
 void tambahBooking(){
+
     bacaFile();
 
     cin.ignore(1000, '\n');
@@ -230,9 +249,12 @@ void tambahBooking(){
     cout << "Booking berhasil ditambahkan!\n";
 }
 
-//======HITUNG NODE=======
+// ================= HITUNG NODE =================
+
 int jumlahData(){
+
     int jumlah = 0;
+
     Node *bantu = head;
 
     while(bantu != NULL){
@@ -240,11 +262,14 @@ int jumlahData(){
         jumlah++;
         bantu = bantu->next;
     }
+
+    return jumlah;
 }
 
-//====sorting=====
+// ================= SORTING =================
 
 void sortingAsc(Booking arr[], int n){
+
     for(int i=0;i<n-1;i++){
 
         for(int j=0;j<n-i-1;j++){
@@ -257,7 +282,8 @@ void sortingAsc(Booking arr[], int n){
     }
 }
 
-void sortingDesc(Booking arr[], int n) {
+void sortingDesc(Booking arr[], int n){
+
     for(int i=0;i<n-1;i++){
 
         for(int j=0;j<n-i-1;j++){
@@ -270,20 +296,23 @@ void sortingDesc(Booking arr[], int n) {
     }
 }
 
-//====tampil data====
+// ================= TAMPIL DATA =================
 
 void tampilBooking(){
+
     bacaFile();
 
     if(head == NULL){
 
         cout << "Data kosong.\n";
         return;
-}
+    }
 
-int pilih;
-do {
-    cout << "\n1. Ascending\n";
+    int pilih;
+
+    do {
+
+        cout << "\n1. Ascending\n";
         cout << "2. Descending\n";
 
         pilih = inputAngka("Pilih: ");
@@ -291,10 +320,11 @@ do {
         if(pilih != 1 && pilih != 2){
 
             cout << "Pilihan tidak valid!\n";
-}
+        }
 
-} while(pilih != 1 && pilih != 2);
-int n = jumlahData();
+    } while(pilih != 1 && pilih != 2);
+
+    int n = jumlahData();
 
     Booking arr[100];
 
@@ -340,14 +370,16 @@ int n = jumlahData();
     }
 }
 
-// searching
+// ================= SEARCHING =================
 
 void cariBooking(){
+
     bacaFile();
 
     cin.ignore(1000, '\n');
 
     string cari;
+
     cout << "\nMasukkan nama tim: ";
     getline(cin, cari);
 
@@ -389,10 +421,12 @@ void cariBooking(){
     }
 }
 
-//======update=====
+// ================= UPDATE =================
 
 void updateBooking(){
+
     bacaFile();
+
     cin.ignore(1000, '\n');
 
     string cari;
@@ -442,9 +476,10 @@ void updateBooking(){
     }
 }
 
-//hapus 
+// ================= HAPUS =================
 
 void hapusBooking(){
+
     bacaFile();
 
     cin.ignore(1000, '\n');
@@ -493,13 +528,15 @@ void hapusBooking(){
     cout << "Data berhasil dihapus!\n";
 }
 
-//==========main===========
+// ================= MAIN =================
 
 int main(){
+
     int menu;
 
-    do{
-        cout << "\n=================================================\n";
+    do {
+
+    cout << "\n=================================================\n";
     cout << "|           SISTEM BOOKING FUTSAL               |\n";
     cout << "=================================================\n";
     cout << "| No | Menu                                     |\n";
@@ -548,6 +585,3 @@ int main(){
 
     return 0;
 }
-    }
-    
-} 
