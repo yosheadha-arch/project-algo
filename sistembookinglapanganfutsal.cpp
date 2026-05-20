@@ -197,7 +197,7 @@ void tambahBooking(){
     cout << "Nama Tim             : ";
     getline(cin, baru->data.namaTim);
 
-    cout << "Tanggal (YYYY-MM-DD) : ";
+    cout << "Tanggal (DD-MM-YYYY) : ";
     getline(cin, baru->data.tanggal);
 
     cout << "Jam (contoh 19:00)   : ";
